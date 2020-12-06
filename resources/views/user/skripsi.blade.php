@@ -75,7 +75,7 @@
                         <h4 class="py-2" id="p_judul">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate labore inventore deserunt?</h4>
                         <div class="d-flex justify-content-between pb-3">
                             <h6 class="text-secondary d-inline my-auto">Penulis : <span id="p_penulis">Rahilah, Firdaus Solihin, Fika Hastarita Rachman</span></h6>
-                            <a href="#" class="btn btn-outline-primary btn-sm my-auto">
+                            <a id="p_file" href="#" target="_blank" class="btn btn-outline-primary btn-sm my-auto">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download align-middle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                     <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
@@ -104,21 +104,21 @@
 <script>
     $(document).ready(function() {
         $(".btn-abstrak").on("click", function() {
-        console.log($(this).data("id"));
-        $.ajax({
-            url: `/skripsi/${$(this).data("id")}`,
-            success: response => {
-                console.log(response);
-                $("#p_judul").html(response.judul);
-                $("#p_abstrak").html(response.abstrak);
-                $("#p_penulis").html(response.penulis);
-                $("#exampleModal").modal("show");
-                
-            },
-            error: e => {
-                console.log(e.responseText);
-            }
-        });
+            console.log($(this).data("id"));
+            $.ajax({
+                url: `/skripsi/show/${$(this).data("id")}`,
+                success: response => {
+                    console.log(response);
+                    $("#p_judul").html(response.judul);
+                    $("#p_abstrak").html(response.abstrak);
+                    $("#p_penulis").html(response.penulis);
+                    $("#p_file").attr("href", `{{ url('/download/${response.file}') }}`);
+                    $("#exampleModal").modal("show");                    
+                },
+                error: e => {
+                    console.log(e.responseText);
+                }
+            });
         });
     });    
 </script>
