@@ -50,7 +50,7 @@
                             </tr>
                         </table>                                                            
                     </div>
-                    <a href="#" data-id="{{$p->id}}" class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
+                    <a href='{{ url("/skripsi/show/{$p->id}") }}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
                 </div>
             </div>
             @endforeach
@@ -106,7 +106,8 @@
         $(".btn-abstrak").on("click", function() {
             console.log($(this).data("id"));
             $.ajax({
-                url: `/skripsi/show/${$(this).data("id")}`,
+                //url: `/skripsi/show/${$(this).data("id")}`,
+                url: this.href,
                 success: response => {
                     console.log(response);
                     $("#p_judul").html(response.judul);
