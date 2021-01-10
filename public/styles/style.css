@@ -1,0 +1,111 @@
+/* style untuk mengatur agar tinggi page tetap memenuhi layar ketika tidak ada konten di dalam container */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    /* Margin bottom by footer height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Set the fixed height of the footer here */
+    line-height: 60px;
+    /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+
+/* style untuk jumbotron di halaman home / file index.html */
+.jumbotron {
+    text-align: center;
+    /* padding-top: 13rem;
+    padding-bottom: 13rem; */
+    padding-top: 15%;
+    padding-bottom: 15%;
+    text-shadow: 2px 2px #000;
+}
+
+.lead span {
+    color: orange;
+    font-weight: bold;
+}
+
+.bg-cover {
+    background: url("../img/img-header-5.png") no-repeat center center;
+    background-size: cover;
+    color: white;
+    background-position: center center;
+    position: relative;
+    z-index: -2;
+}
+
+.overlay {
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+
+/* effect hover di halaman home / index.html */
+.yrav-secondary-effect:hover {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 5px;
+}
+
+/* mengatur jumlah baris teks yang ditampilkan */
+/* .yrav-wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    /* number of lines to show 
+    -webkit-box-orient: vertical;
+}    */
+
+.yrav-min-w-fit {
+    min-width: fit-content;
+} 
+
+.yrav-bg-abu {
+    background-color: #f4f4f2;
+}
+
+
+.yrav-card-effect:hover {
+    /* background-color: rgba(245, 245, 245, 0.5); */
+    outline: 2px ridge rgb(177, 225, 240);                                    
+}
+      
+.form-control:focus {
+    background-color: unset;
+    box-shadow: none;
+}
+
+.form-control-underlined {
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-radius: 0;
+    padding-left: 0;
+}
+
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+/* Style untuk halaman detail skripsi atau abstrak */
+.yrav-paper {
+    border-radius: 3px;
+    box-shadow: 3px 5px 15px 5px silver;
+}

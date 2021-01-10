@@ -38,7 +38,7 @@
                             </svg>
                             <p class="text-muted mt-1">{{$p->tahun}}</p>
                         </div>                                                                    
-                        <h5 class="card-title ml-3">{{$p->judul}}</h5>                                
+                        <h5 class="card-title ml-3">{!! $p->judul !!}</h5>                                
                     </div>
                                                 
                     <div class="card-text pb-4">     
@@ -72,7 +72,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="container py-lg-4 py-sm-2 px-lg-5 px-sm-3 border bg-white">
-                        <h4 class="py-2" id="p_judul">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate labore inventore deserunt?</h4>
+                        <!-- tag dengan 'id=p_judul' akan berisi judul penelitian -->
+                        <h4 class="py-2" id="p_judul"></h4>
                         <div class="d-flex justify-content-between pb-3">
                             <h6 class="text-secondary d-inline my-auto">Penulis : <span id="p_penulis">Rahilah, Firdaus Solihin, Fika Hastarita Rachman</span></h6>
                             <a id="p_file" href="#" target="_blank" class="btn btn-outline-primary btn-sm my-auto">
@@ -83,10 +84,9 @@
                                 Download Jurnal
                             </a>
                         </div>
-        
-                        <p class="text-justify" id="p_abstrak">
-                            &emsp;&emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio iure exercitationem sequi beatae architecto sit a magni, eligendi fuga incidunt, eius non rem aliquid cum at ipsam dolore perspiciatis ad assumenda voluptate dolorem praesentium. Non nostrum, unde, doloremque dolore esse quisquam neque corporis soluta placeat sint praesentium ipsam aperiam enim suscipit deserunt! Quia alias, soluta provident amet sit non maxime itaque nisi repellat culpa nihil nesciunt vero est eius nostrum dolor, quisquam a corrupti dolore ipsum illo recusandae odio fugiat inventore. Eaque, tempore quas sapiente impedit iure reiciendis nobis, ducimus quae ipsa earum deserunt veritatis ex assumenda. Architecto odit placeat accusantium amet eum reiciendis dicta aut praesentium laboriosam vel delectus assumenda totam, minus magnam ipsa ab veritatis quos porro quas iusto sunt dignissimos corrupti. Aut nulla, sint dolores quisquam corrupti officiis in corporis sapiente laudantium quibusdam tenetur. Maxime eveniet dolore, numquam similique rerum consequatur. Placeat cum, hic voluptas cupiditate similique accusantium tenetur molestias quas optio voluptatibus corporis debitis unde. Inventore quae voluptatum, totam, distinctio nemo ipsam eum necessitatibus commodi ex rem facere quasi reprehenderit officia aliquam labore illum velit magnam praesentium perferendis aut in voluptas nam eius! Doloremque molestias odit facere! Obcaecati, doloremque. Natus voluptas ea nihil? Doloribus repellendus voluptatibus dolorum vitae aliquid ipsa. Et omnis illo pariatur at, rem facilis ad! Suscipit dignissimos perspiciatis soluta minima reiciendis dicta fuga ratione cum accusamus minus nesciunt dolorum veniam sapiente repellendus laboriosam nemo voluptate deleniti provident similique labore maiores porro, fugit ab? Alias eos perferendis soluta provident temporibus fugit, illo velit voluptates tenetur impedit est cumque porro eligendi laboriosam mollitia repudiandae et ad libero architecto, laborum distinctio. Cumque eveniet minus saepe id aliquid alias! Debitis at quisquam illo reprehenderit veritatis quia eveniet. Velit adipisci, ipsam at sed, pariatur rerum consequuntur, ea tenetur vitae minus similique architecto hic. Totam laborum veritatis earum quaerat.
-                        </p>
+
+                        <!-- tag dengan 'id=p_abstrak' akan berisi abstrak penelitian -->
+                        <p class="text-justify" id="p_abstrak"></p>
         
                         <h6 class="text-secondary">Kata Kunci : Aplikasi Penerjemah Bahasa, Free Contex Parsing Algorithm</h6>
                     </div>
@@ -103,8 +103,7 @@
 @section('js')
 <script>
     $(document).ready(function() {
-        $(".btn-abstrak").on("click", function() {
-            console.log($(this).data("id"));
+        $(".btn-abstrak").on("click", function() {            
             $.ajax({
                 //url: `/skripsi/show/${$(this).data("id")}`,
                 url: this.href,

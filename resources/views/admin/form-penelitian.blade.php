@@ -4,50 +4,119 @@
 @section("css")
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
-            <h1>
-                Sidebar Collapsed
-                <small>Layout with collapsed sidebar on load</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Layout</a></li>
-                <li class="active">Collapsed Sidebar</li>
-            </ol>
-        </section> -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">    
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="callout callout-info">
-                <h4>Tip!</h4>
+    <!-- Main content -->
+    <section class="content">
+        <div class="callout callout-info">
+            <h4>Tip!</h4>
 
-                <p>Add the sidebar-collapse class to the body tag to get this layout. You should combine this option with a
-                    fixed layout if you have a long sidebar. Doing that will prevent your page content from getting stretched
-                    vertically.</p>
+            <p>Add the sidebar-collapse class to the body tag to get this layout. You should combine this option with a
+                fixed layout if you have a long sidebar. Doing that will prevent your page content from getting stretched
+                vertically.</p>
+        </div>
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form Tambah Data</h3>            
             </div>
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Form Tambah Data</h3>
+            <div class="box-body">
+                <!-- Start creating your amazing application! -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible hide">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            Gagal menambahkan data!!
+                        </div>
+                        <div class="alert alert-success alert-dismissible hide">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            Data berhasil ditambahkan!!
+                        </div>
+                        <form role="form" action="{{ url('/skripsi/store') }}" method="POST" enctype="multipart/form-data">
+                            @method('POST')
+                            @csrf
+                            <!-- /.box -->
+                            <div class="box-footer">                                
+                                <button type="reset" class="btn btn-info">Reset</button>                                                                        
+                                <button id="btn_form_penelitian" type="submit" class="btn btn-primary pull-right">Submit</button>                                                                    
+                            </div>
 
-                    <!-- <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fa fa-times"></i></button>
-                    </div> -->
-                </div>
-                <div class="box-body">
-                    <!-- Start creating your amazing application! -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form role="form">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">
+                                        <b>Form Penelitian</b>
+                                    </h3>
+                                    <!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                            <i class="fa fa-minus"></i></button>
+                                        <!-- <button type="button" class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                            <i class="fa fa-times"></i></button> -->
+                                    </div>
+                                    <!-- /. tools -->                                    
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body pad">                                                                        
+                                    <!-- text input -->
+                                    <div class="form-group @error('penulis') has-error @enderror">
+                                        <label>Nama Penulis:</label>
+                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,']/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama peneliti">
+                                        @error('penulis')
+                                            <span class="help-block">{{$message}}</span>                    
+                                        @enderror
+                                    </div>
+                                    <!-- text input -->
+                                    <div class="form-group @error('nrp') has-error @enderror">
+                                        <label>NRP Pene liti:</label>
+                                        <input name="nrp" type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  class="form-control" maxlength="12" placeholder="NRP peneliti">
+                                        @error('nrp')
+                                            <span class="help-block">{{$message}}</span>                    
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group @error('file') has-error @enderror">
+                                        <label for="file">File penelitian</label>
+                                        <input type="file" name="file">                        
+                                        @error('file')
+                                            <span class="help-block">{{$message}}</span>                    
+                                        @enderror
+                                        <!-- <p class="help-block">Example block-level help text here.</p> -->
+                                    </div>                
+                                    
+                                    <div class="form-group @error('tahun') has-error @enderror">
+                                        <label>Tahun Penelitian</label>
+                        
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right">
+                                        </div>
+                                        @error('tahun')
+                                            <span class="help-block">{{$message}}</span>                    
+                                        @enderror
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group @error('nrp') has-error @enderror">
+                                        <label>Kata Kunci Penelitian:</label>
+                                        <input name="kata_kunci" type="text" class="form-control" placeholder="NRP peneliti">
+                                        @error('kata_kunci')
+                                            <span class="help-block">{{$message}}</span>                    
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">
@@ -62,53 +131,15 @@
                                     </div>
                                     <!-- /. tools -->
                                 </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">                                        
-                                    <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 75px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>                                    
+                                <!-- /.box-header -->                                
+                                <div class="box-body pad @error('judul') has-error @enderror">
+                                    @error('judul')
+                                        <span class="help-block">{{$message}}</span>                    
+                                    @enderror
+                                    <textarea id="editor2" name="judul" rows="10" cols="80"></textarea>
                                 </div>
                             </div>
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        <b>Detail Penelitian</b>
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                            <i class="fa fa-minus"></i></button>
-                                        <!-- <button type="button" class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                                            <i class="fa fa-times"></i></button> -->
-                                    </div>
-                                    <!-- /. tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">File penelitian</label>
-                                        <input type="file" id="exampleInputFile">
                         
-                                        <!-- <p class="help-block">Example block-level help text here.</p> -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tanggal Penelitian</label>
-                        
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right" id="datepicker">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- text input -->
-                                    <div class="form-group">
-                                        <label>Nama Peneliti:</label>
-                                        <input type="text" class="form-control" placeholder="Nama peneliti">
-                                    </div>
-                                </div>
-                            </div>
-                            
-
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">
@@ -124,34 +155,32 @@
                                     <!-- /. tools -->
                                 </div>
                                 <!-- /.box-header -->
-                                <div class="box-body pad">                                        
-                                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                        
-                                    </textarea>                                        
+                                <div class="box-body pad @error('abstrak') has-error @enderror">
+                                    @error('abstrak')
+                                        <span class="help-block">{{$message}}</span>                    
+                                    @enderror
+                                    <textarea id="editor1" name="abstrak" rows="10" cols="80"></textarea>
                                 </div>
+                                
                             </div>
-                            <!-- /.box -->
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-info">Reset</button>
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                            </div>
+                            
                         </form>
-                        </div>
-                        <!-- /.col-->
                     </div>
-                    <!-- ./row -->
+                    <!-- /.col-->
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    Footer
-                </div>
-                <!-- /.box-footer-->
+                <!-- ./row -->
             </div>
-            <!-- /.box -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+            <!-- /.box-body -->
+            <div class="box-footer">
+                Footer
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 @endsection    
 <!-- ./wrapper -->
 
@@ -163,16 +192,59 @@
 <!-- bootstrap datepicker -->
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
-    $(function() {
+    $(document).ready(function() {    
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
         //bootstrap WYSIHTML5 - text editor
         $('.textarea').wysihtml5();
 
         $('#datepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years"    
         });
+
+        // $('#btn_form_penelitian').click(function() {
+        //     // console.log($('#judul_penelitian').val());
+        //     // console.log($('#tgl_penelitian').val());
+        //     // console.log($('#nama_peneliti').val());
+        //     // console.log(CKEDITOR.instances['editor1'].getData());
+
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     $.post(
+        //         "/skripsi/store", 
+        //         {
+        //             judul: $('#judul_penelitian').val(),
+        //             abstrak: CKEDITOR.instances['editor1'].getData(),
+        //             //file: $('#file_penelitian').val(),
+        //             penulis: $('#nama_peneliti').val(),
+        //             nrp: $('#nrp_peneliti').val(),
+        //             tahun: $('#tgl_penelitian').val()
+        //         }
+        //     )
+        //     .done(function(response) {                
+        //         //console.log($('#file_penelitian').prop('files')[0]);
+        //         console.log(response);
+        //         if (response) {
+        //             $('.alert-success').removeClass('hide');
+        //             setTimeout(function(){ 
+        //                 $('.alert-success').addClass('hide');
+        //             }, 15000);                   
+        //         } else {
+        //             $('.alert-danger').removeClass('hide');
+        //             setTimeout(function(){ 
+        //                 $('.alert-danger').addClass('hide');
+        //             }, 15000);                   
+        //         }               
+        //     });
+        // });
     });
         
 </script>

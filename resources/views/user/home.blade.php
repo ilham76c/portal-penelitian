@@ -7,9 +7,10 @@
     <div class="jumbotron jumbotron bg-cover">
         <div class="overlay"></div>
         <div class="container">
-            <h1 class="display-3 mb-1">Welcome to my website</h1>
-            <p class="lead">ilham76c
-                <span>you are an revolt</span>
+            <h1 class="display-3 mb-1">Portal Data Penelitian</h1>
+            <p class="lead">
+                Teknik Informatika <br>
+                <span>Universita Trunojoyo Madura</span>
             </p>
         </div>
     </div> 
