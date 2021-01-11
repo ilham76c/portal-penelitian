@@ -39,7 +39,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Table Data Penelitian</h3>
+                <h3 class="box-title">Data Penelitian</h3>
 
                 <!-- <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -50,129 +50,46 @@
             </div>
             <div class="box-body">
                 <div class="box">
-                    <div class="box-header">
+                    <!-- <div class="box-header">
                       <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
+                    </div> -->
                     <!-- /.box-header -->
                     <div class="box-body">
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                        <tr>
-                          <th>Judul</th>
-                          <th>Tahun</th>
-                          <th>Penulis</th>
-                          <th>File</th>
-                          <th>#</th>
-                        </tr>
+                          <tr>
+                            <th>Judul</th>
+                            <!-- <th>Abstrak</th> -->
+                            <th>Penulis</th>
+                            <th>NRP</th>
+                            <th>File</th>   
+                            <th>Tahun</th>                                                        
+                            <th colspan="2">#</th>                         
+                          </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 4.0
-                          </td>
-                          <td>Win 95+</td>
-                          <td> 4</td>
-                          <td>X</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 5.0
-                          </td>
-                          <td>Win 95+</td>
-                          <td>5</td>
-                          <td>C</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 5.5
-                          </td>
-                          <td>Win 95+</td>
-                          <td>5.5</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 6
-                          </td>
-                          <td>Win 98+</td>
-                          <td>6</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet Explorer 7</td>
-                          <td>Win XP SP2+</td>
-                          <td>7</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>AOL browser (AOL desktop)</td>
-                          <td>Win XP</td>
-                          <td>6</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Firefox 1.0</td>
-                          <td>Win 98+ / OSX.2+</td>
-                          <td>1.7</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Firefox 1.5</td>
-                          <td>Win 98+ / OSX.2+</td>
-                          <td>1.8</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Firefox 2.0</td>
-                          <td>Win 98+ / OSX.2+</td>
-                          <td>1.8</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Firefox 3.0</td>
-                          <td>Win 2k+ / OSX.3+</td>
-                          <td>1.9</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Camino 1.0</td>
-                          <td>OSX.2+</td>
-                          <td>1.8</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Camino 1.5</td>
-                          <td>OSX.3+</td>
-                          <td>1.8</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Netscape 7.2</td>
-                          <td>Win 95+ / Mac OS 8.6-9.2</td>
-                          <td>1.7</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Gecko</td>
-                          <td>Netscape Browser 8</td>
-                          <td>Win 98SE+</td>
-                          <td>1.7</td>
-                          <td>A</td>
-                        </tr>                                                                
-                        </tfoot>
+                        <tbody>                        
+                          @forelse ($penelitian as $key)
+                            <tr>
+                                <td>{!! $key->judul !!}</td>
+                                <!-- <td>{!! $key->abstrak !!}</td> -->
+                                <td>{{ $key->penulis }}</td>
+                                <td>{{ $key->nrp }}</td>
+                                <td>
+                                  <a href='{{ url("/download/{$key->file}") }}' target="_blank">File</a>
+                                </td>
+                                <td>{{ $key->tahun }}</td>                                                                                            
+                                <td>                                  
+                                    <a title="Edit" class="badge bg-blue center" href="#"><span class="fa fa-edit"></span></a>
+                                </td>
+                                <td>                                    
+                                    <a title="Delete" class="badge bg-red" href="#"><span class="fa fa-trash"></span></a>                                                                  
+                                </td>
+                                
+                            </tr>
+                          @empty
+                              <p>Tidak ada data penelitian!!</p>
+                          @endforelse                                                       
+                        </tbody>
                       </table>
                     </div>
                     <!-- /.box-body -->
@@ -199,7 +116,12 @@
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
     $(function() {
-        $('#example1').DataTable();            
+        $('#example1').DataTable({
+          'aoColumnDefs': [{
+            'bSortable': false,
+            'aTargets': [3,5,6] /* 1st one, start by the right */
+          }]
+        });            
     });        
 </script>
 @endsection

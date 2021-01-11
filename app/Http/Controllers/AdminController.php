@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PenelitianModel;
 
 class AdminController extends Controller
 {
@@ -13,7 +14,11 @@ class AdminController extends Controller
 
     public function penelitianTable()
     {
-        return view("admin.table-penelitian");
+        // mengambil data penelitian dari database
+        $penelitian = PenelitianModel::select(['judul','abstrak','penulis','nrp','tahun','file'])->get();        
+
+        // berpindah ke halaman Data Penelitian dan mengirimkan variable "$penelitian" yang berisi data penelitian 
+        return view("admin.table-penelitian", compact("penelitian"));
     }
 
     public function penelitianForm()
