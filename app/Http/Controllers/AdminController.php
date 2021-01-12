@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function penelitianTable()
     {
         // mengambil data penelitian dari database
-        $penelitian = PenelitianModel::select(['judul','abstrak','penulis','nrp','tahun','file'])->get();        
+        $penelitian = PenelitianModel::select()->get();        
 
         // berpindah ke halaman Data Penelitian dan mengirimkan variable "$penelitian" yang berisi data penelitian 
         return view("admin.table-penelitian", compact("penelitian"));

@@ -116,7 +116,8 @@ class PenelitianController extends Controller
      */
     public function destroy(PenelitianModel $penelitianModel)
     {
-        //
+        PenelitianModel::destroy($penelitianModel->id);
+        return redirect('/penelitian/table');
     }
 
     /**

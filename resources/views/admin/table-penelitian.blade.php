@@ -81,8 +81,14 @@
                                 <td>                                  
                                     <a title="Edit" class="badge bg-blue center" href="#"><span class="fa fa-edit"></span></a>
                                 </td>
-                                <td>                                    
-                                    <a title="Delete" class="badge bg-red" href="#"><span class="fa fa-trash"></span></a>                                                                  
+                                <td>              
+                                  <form action='{{ url("/skripsi/delete/{$key->id}") }}' method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button title="Delete" type="submit" class="btn-link badge bg-red" onclick="return confirm('Anda yakin untuk menghapus data?')">
+                                      <span class="fa fa-trash"></span>
+                                    </button>
+                                  </form>                      
                                 </td>
                                 
                             </tr>
