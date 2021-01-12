@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', 'Form Penelitian')
+@section('title', 'Form Edit Penelitian')
 
 @section("css")
 <!-- bootstrap wysihtml5 - text editor -->
@@ -35,24 +35,24 @@
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <h4><i class="icon fa fa-check"></i> Alert!</h4>                                
-                                Data berhasil ditambahkan!!
+                                Data berhasil diperbarui!!
                             </div>
                         @elseif (session('status') == 'gagal')
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                                Gagal menambahkan data!!
+                                Gagal memperbarui data!!
                             </div>
                         @endif
                         
                         
-                        <form role="form" action="{{ url('/skripsi/store') }}" method="POST" enctype="multipart/form-data">
-                            @method('POST')
+                        <form role="form" action="{{ url('/skripsi/update') }}" method="POST" enctype="multipart/form-data">
+                            @method('PATCH')
                             @csrf
                             <!-- /.box -->
                             <div class="box-footer">                                
-                                <button type="reset" name="reset" class="btn btn-info">Reset</button>                                                                        
-                                <button type="submit" class="btn btn-primary pull-right">Tambah</button>                                                                    
+                                <button type="reset" name="reset" class="btn btn-info">Reset</button>
+                                <button id="btn_form_penelitian" type="submit" class="btn btn-primary pull-right">Update</button>
                             </div>
 
                             <div class="box">
@@ -74,7 +74,7 @@
                                     <!-- text input -->
                                     <div class="form-group @error('penulis') has-error @enderror">
                                         <label>Nama Penulis:</label>
-                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,',\s]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama penulis" value="{{ old('penulis') }}">
+                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,',\s]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama penulis" value="{{ $penelitian->nama }}">
                                         @error('penulis')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -82,7 +82,7 @@
                                     <!-- text input -->
                                     <div class="form-group @error('nrp') has-error @enderror">
                                         <label>NRP Penulis:</label>
-                                        <input name="nrp" type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  class="form-control" maxlength="12" placeholder="NRP penulis" value="{{ old('nrp') }}">
+                                        <input name="nrp" type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  class="form-control" maxlength="12" placeholder="NRP penulis" value="{{ $penelitian->nrp }}">
                                         @error('nrp')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -104,7 +104,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right" value="{{ old('tahun') }}">
+                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right" value="{{ $penelitian->tahun }}">
                                         </div>
                                         @error('tahun')
                                             <span class="help-block">{{$message}}</span>                    
@@ -114,7 +114,7 @@
 
                                     <div class="form-group @error('nrp') has-error @enderror">
                                         <label>Kata Kunci Penelitian:</label>
-                                        <input name="kata_kunci" type="text" class="form-control" placeholder="Kata kunci penelitian" value="{{ old('kata_kunci') }}">
+                                        <input name="kata_kunci" type="text" class="form-control" placeholder="Kata kunci penelitian" value="{{ $penelitian->kata_kunci }}">
                                         @error('kata_kunci')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -141,8 +141,8 @@
                                     @error('judul')
                                         <span class="help-block">{{$message}}</span>                    
                                     @enderror
-                                    <textarea id="editor2" name="judul" rows="10" cols="80" value="{{ old('judul') }}">
-                                        {{ old("judul") }}
+                                    <textarea id="editor2" name="judul" rows="10" cols="80">
+                                        {{ $penelitian->judul }}
                                     </textarea>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                         <span class="help-block">{{$message}}</span>                    
                                     @enderror
                                     <textarea id="editor1" name="abstrak" rows="10" cols="80">
-                                        {{ old("abstrak") }}
+                                        {{ $penelitian->abstrak }}
                                     </textarea>
                                 </div>
                                 
@@ -225,7 +225,7 @@
             CKEDITOR.instances['editor1'].setData('');
             CKEDITOR.instances['editor2'].setData('');
         });
-        
+
         // $('#btn_form_penelitian').click(function() {
         //     // console.log($('#judul_penelitian').val());
         //     // console.log($('#tgl_penelitian').val());
