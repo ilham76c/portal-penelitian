@@ -31,16 +31,21 @@
                 <!-- Start creating your amazing application! -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="alert alert-danger alert-dismissible hide">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                            Gagal menambahkan data!!
-                        </div>
-                        <div class="alert alert-success alert-dismissible hide">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                            Data berhasil ditambahkan!!
-                        </div>
+                        @if (session('status') == 'berhasil')
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>                                
+                                Data berhasil ditambahkan!!
+                            </div>
+                        @elseif (session('status') == 'gagal')
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                Gagal menambahkan data!!
+                            </div>
+                        @endif
+                        
+                        
                         <form role="form" action="{{ url('/skripsi/store') }}" method="POST" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
@@ -69,15 +74,15 @@
                                     <!-- text input -->
                                     <div class="form-group @error('penulis') has-error @enderror">
                                         <label>Nama Penulis:</label>
-                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,']/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama peneliti">
+                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,',\s]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama penulis" value="{{ old('penulis') }}">
                                         @error('penulis')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
                                     </div>
                                     <!-- text input -->
                                     <div class="form-group @error('nrp') has-error @enderror">
-                                        <label>NRP Pene liti:</label>
-                                        <input name="nrp" type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  class="form-control" maxlength="12" placeholder="NRP peneliti">
+                                        <label>NRP Penulis:</label>
+                                        <input name="nrp" type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  class="form-control" maxlength="12" placeholder="NRP penulis" value="{{ old('nrp') }}">
                                         @error('nrp')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -99,7 +104,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right">
+                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right" value="{{ old('tahun') }}">
                                         </div>
                                         @error('tahun')
                                             <span class="help-block">{{$message}}</span>                    
@@ -109,7 +114,7 @@
 
                                     <div class="form-group @error('nrp') has-error @enderror">
                                         <label>Kata Kunci Penelitian:</label>
-                                        <input name="kata_kunci" type="text" class="form-control" placeholder="NRP peneliti">
+                                        <input name="kata_kunci" type="text" class="form-control" placeholder="Kata kunci penelitian" value="{{ old('kata_kunci') }}">
                                         @error('kata_kunci')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -136,7 +141,9 @@
                                     @error('judul')
                                         <span class="help-block">{{$message}}</span>                    
                                     @enderror
-                                    <textarea id="editor2" name="judul" rows="10" cols="80"></textarea>
+                                    <textarea id="editor2" name="judul" rows="10" cols="80" value="{{ old('judul') }}">
+                                        {{ old("judul") }}
+                                    </textarea>
                                 </div>
                             </div>
                         
@@ -159,7 +166,9 @@
                                     @error('abstrak')
                                         <span class="help-block">{{$message}}</span>                    
                                     @enderror
-                                    <textarea id="editor1" name="abstrak" rows="10" cols="80"></textarea>
+                                    <textarea id="editor1" name="abstrak" rows="10" cols="80">
+                                        {{ old("abstrak") }}
+                                    </textarea>
                                 </div>
                                 
                             </div>
