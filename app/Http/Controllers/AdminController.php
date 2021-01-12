@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function penelitianForm()
     {
-        return view("admin.form-penelitian");
+        return view("admin.form-tambah-penelitian");
     }
 
     public function aplikasiTable()
