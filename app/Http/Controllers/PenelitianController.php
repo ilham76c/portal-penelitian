@@ -39,19 +39,7 @@ class PenelitianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //$name = $request;
-        //$path = $request->file;
-        // return DB::table("tbl_penelitian")->insert([
-        //     "judul" => $request->judul,
-        //     "abstrak" => $request->abstrak,
-        //     "penulis" => $request->penulis,
-        //     "nrp" => $request->nrp,
-        //     "file" => $path,
-        //     "tahun" => $request->tahun
-        // ]);
-        // return json_decode($request);        
-        //return $request->all();
+    {        
         $validatedData = $request->validate([
             "judul" => "required",
             "abstrak" => "required",
@@ -61,16 +49,20 @@ class PenelitianController extends Controller
             "file" => "required"
         ]);
         $path = $request->file->storePublicly("uploads");
-        
-        //return $request->file;
-        return PenelitianModel::create([
-                "judul" => $request->judul,
-                "abstrak" => $request->abstrak,
-                "penulis" => $request->penulis,
-                "nrp" => $request->nrp,
-                "file" => explode("/", $path)[1],
-                "tahun" => $request->tahun
-            ]);
+                
+        $query = PenelitianModel::create([
+            "judul" => $request->judul,
+            "abstrak" => $request->abstrak,
+            "penulis" => $request->penulis,
+            "nrp" => $request->nrp,
+            "file" => explode("/", $path)[1],
+            "tahun" => $request->tahun
+        ]);
+
+        if (!$query) {
+            return redirect('/penelitian/form')->with('status', 'gagal');
+        }
+        return back()->withInput()->with('status', 'berhasil');        
     }
 
     /**
@@ -126,20 +118,10 @@ class PenelitianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function download(string $fileName)
-    {
-        //return Storage::putFile("uploads", new File(Storage::path("uploads/{$fileName}")));
+    {        
         return Storage::download("uploads/{$fileName}", $fileName, [
             "Content-Type" => "application/pdf",
             "Content-Disposition" => "inline; ".$fileName,
-        ]);
-        //return Storage::path($fileName);
-        // return Response::make($path, 200, [
-        //     "Content-Type" => "application/pdf",
-        //     "Content-Disposition" => "inline; ".$filename,
-        //     ]);
-        // return response()->download(Storage::url("uploads/{$fileName}", [
-        //         "Content-Type" => "application/pdf",
-        //         "Content-Disposition" => "inline; ".$fileName,
-        //     ]));
+        ]);        
     }
 }
