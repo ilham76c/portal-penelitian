@@ -51,8 +51,8 @@
                             @csrf
                             <!-- /.box -->
                             <div class="box-footer">                                
-                                <button type="reset" class="btn btn-info">Reset</button>                                                                        
-                                <button id="btn_form_penelitian" type="submit" class="btn btn-primary pull-right">Submit</button>                                                                    
+                                <button type="reset" name="reset" class="btn btn-info">Reset</button>                                                                        
+                                <button type="submit" class="btn btn-primary pull-right">Tambah</button>                                                                    
                             </div>
 
                             <div class="box">
@@ -216,6 +216,16 @@
             minViewMode: "years"    
         });
 
+        $('button[name="reset"]').on('click', function() {
+            $('input[name="penulis"]').html('');
+            $('input[name="nrp"]').html('');
+            $('input[name="file"]').html('');
+            $('input[name="tahun"]').html('');
+            $('input[name="kata_kunci"]').html('');
+            CKEDITOR.instances['editor1'].setData('');
+            CKEDITOR.instances['editor2'].setData('');
+        });
+        
         // $('#btn_form_penelitian').click(function() {
         //     // console.log($('#judul_penelitian').val());
         //     // console.log($('#tgl_penelitian').val());
