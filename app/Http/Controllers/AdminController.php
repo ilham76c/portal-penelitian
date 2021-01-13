@@ -10,21 +10,7 @@ class AdminController extends Controller
     public function index() 
     {
         return view("admin.dashboard");
-    }
-
-    public function penelitianTable()
-    {
-        // mengambil data penelitian dari database
-        $penelitian = PenelitianModel::select()->get();        
-
-        // berpindah ke halaman Data Penelitian dan mengirimkan variable "$penelitian" yang berisi data penelitian 
-        return view("admin.table-penelitian", compact("penelitian"));
-    }
-
-    public function penelitianForm()
-    {
-        return view("admin.form-tambah-penelitian");
-    }
+    } 
 
     public function aplikasiTable()
     {
