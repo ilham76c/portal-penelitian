@@ -17,21 +17,18 @@ use App\Models\PenelitianModel;
 */
 
 Route::get("/", [UserController::class, "home"]);
-
-Route::get("/skripsi", [PenelitianController::class, "index"]);
-Route::get("/skripsi/show/{penelitianModel}", [PenelitianController::class, "show"]);
-Route::post("/skripsi/store", [PenelitianController::class, "store"]);
-Route::get("/download/{fileName}", [PenelitianController::class, "download"]);
-Route::delete("/skripsi/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
-
 Route::get("/aplikasi", [UserController::class, "aplikasi"]);
 
+Route::get("/penelitian", [PenelitianController::class, "index"]);
+Route::post("/penelitian/store", [PenelitianController::class, "store"]);
+Route::get("/penelitian/form/tambah", [PenelitianController::class, "create"]);
+Route::get("/penelitian/form/{penelitianModel}/edit", [PenelitianController::class, "edit"]);
+Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "show"]);
+Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
+Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);
+
 Route::get("/dashboard", [AdminController::class, "index"]);
-
 Route::get("/penelitian/table", [AdminController::class, "penelitianTable"]);
-Route::get("/penelitian/form", [AdminController::class, "penelitianForm"]);
-
-
 Route::get("/aplikasi/table", [AdminController::class,"aplikasiTable"]);
 Route::get("/aplikasi/form", [AdminController::class, "aplikasiForm"]);
 
