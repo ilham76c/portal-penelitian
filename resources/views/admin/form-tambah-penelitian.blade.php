@@ -46,7 +46,7 @@
                         @endif
                         
                         
-                        <form role="form" action="{{ url('/skripsi/store') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" action="{{ url('/penelitian/store') }}" method="POST" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
                             <!-- /.box -->
