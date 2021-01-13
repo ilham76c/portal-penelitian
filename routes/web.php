@@ -22,7 +22,7 @@ Route::get("/aplikasi", [UserController::class, "aplikasi"]);
 Route::get("/penelitian", [PenelitianController::class, "index"]);
 Route::post("/penelitian/store", [PenelitianController::class, "store"]);
 Route::get("/penelitian/form/tambah", [PenelitianController::class, "create"]);
-Route::get("/penelitian/form/{penelitianModel}/edit", [PenelitianController::class, "edit"]);
+Route::post("/penelitian/form/{penelitianModel}/edit", [PenelitianController::class, "edit"]);
 Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "show"]);
 Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
 Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);

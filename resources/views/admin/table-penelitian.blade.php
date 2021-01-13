@@ -78,11 +78,18 @@
                                   <a href='{{ url("/download/{$key->file}") }}' target="_blank">File</a>
                                 </td>
                                 <td>{{ $key->tahun }}</td>                                                                                            
-                                <td>                                  
-                                    <a title="Edit" class="badge bg-blue center" href="#"><span class="fa fa-edit"></span></a>
+                                <td>                 
+                                  <form action='{{ url("/penelitian/form/{$key->id}/edit") }}' method="post">
+                                    @method('POST')
+                                    @csrf
+                                    <button title="Edit" type="submit" class="btn-link badge bg-blue">
+                                      <span class="fa fa-edit">
+                                    </button>
+                                  </form>                 
+                                    <!-- <a title="Edit" class="btn btn-default btn btn-circle badge bg-blue" href='{{ url("/penelitian/form/{$key->id}/edit") }}'><span class="fa fa-edit"></span></a> -->
                                 </td>
                                 <td>              
-                                  <form action='{{ url("/skripsi/delete/{$key->id}") }}' method="post">
+                                  <form action='{{ url("/penelitian/delete/{$key->id}") }}' method="post">
                                     @method('delete')
                                     @csrf
                                     <button title="Delete" type="submit" class="btn-link badge bg-red" onclick="return confirm('Anda yakin untuk menghapus data?')">
