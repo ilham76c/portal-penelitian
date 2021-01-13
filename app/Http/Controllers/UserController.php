@@ -12,11 +12,10 @@ class UserController extends Controller
         return view("user.home");
     }
 
-    public function skripsi()
-    {
-        $penelitian = PenelitianModel::paginate(1);
-        ///dd($penelitian);
-        return view("user.skripsi", ['penelitian' => $penelitian]);
+    public function penelitian()
+    {        
+        $penelitian = PenelitianModel::paginate(6);
+        return view("user.penelitian", compact("penelitian"));
     }
 
     public function aplikasi()

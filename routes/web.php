@@ -17,9 +17,10 @@ use App\Models\PenelitianModel;
 */
 
 Route::get("/", [UserController::class, "home"]);
+Route::get("/penelitian", [UserController::class, "penelitian"]);
 Route::get("/aplikasi", [UserController::class, "aplikasi"]);
 
-Route::get("/penelitian", [PenelitianController::class, "index"]);
+Route::get("/penelitian/table", [PenelitianController::class, "index"]);
 Route::post("/penelitian/store", [PenelitianController::class, "store"]);
 Route::get("/penelitian/form/tambah", [PenelitianController::class, "create"]);
 Route::put("/penelitian/update/{penelitianModel}", [PenelitianController::class, "update"]);
@@ -29,7 +30,6 @@ Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::cla
 Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);
 
 Route::get("/dashboard", [AdminController::class, "index"]);
-Route::get("/penelitian/table", [AdminController::class, "penelitianTable"]);
 Route::get("/aplikasi/table", [AdminController::class,"aplikasiTable"]);
 Route::get("/aplikasi/form", [AdminController::class, "aplikasiForm"]);
 

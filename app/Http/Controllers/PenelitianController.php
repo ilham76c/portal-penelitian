@@ -18,8 +18,11 @@ class PenelitianController extends Controller
      */
     public function index()
     {
-        $penelitian = PenelitianModel::paginate(6);
-        return view("user.penelitian", compact("penelitian"));
+        // mengambil data penelitian dari database
+        $penelitian = PenelitianModel::select()->get();        
+
+        // berpindah ke halaman Data Penelitian dan mengirimkan variable "$penelitian" yang berisi data penelitian 
+        return view("admin.table-penelitian", compact("penelitian"));
     }
 
     /**
