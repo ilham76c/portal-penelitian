@@ -78,8 +78,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{request()->is('penelitian/form') ? 'active' : ''}}">
-                                <a href="{{ url('/penelitian/form') }}">
+                            <li class="{{request()->is('penelitian/form/tambah') ? 'active' : ''}}">
+                                <a href="{{ url('/penelitian/form/tambah') }}">
                                     <i class="fa fa-plus-circle"></i> <span>Tambah Data</span>
                                 </a>
                             </li>
