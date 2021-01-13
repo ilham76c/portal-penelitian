@@ -60,7 +60,7 @@ class PenelitianController extends Controller
         ]);
 
         if (!$query) {
-            return redirect('/penelitian/form')->with('status', 'gagal');
+            return back()->withInput()->with('status', 'gagal');
         }
         return back()->withInput()->with('status', 'berhasil');        
     }
@@ -97,13 +97,19 @@ class PenelitianController extends Controller
      */
     public function update(Request $request, PenelitianModel $penelitianModel)
     {
-        // PenelitianModel::where('id', $penelitianModel->id)->update(
-        //     'judul'   => $request->judul,
-        //     'abstrak' => $request->abstrak,
-        //     'penulis' => $request->penulis,
-        //     'nrp'     => $request->nrp,
-        // );
-        return $request;
+        if (isset($request->file)) {
+            $penelitianModel->file = explode("/", $request->file->storeAs("uploads", $penelitianModel->file))[1];            
+        }
+        PenelitianModel::where('id', $penelitianModel->id)->update([
+            'judul'   => $request->judul,
+            'abstrak' => $request->abstrak,
+            'penulis' => $request->penulis,
+            'nrp'     => $request->nrp,
+            'file'    => $penelitianModel->file,
+            'tahun'   => $request->tahun
+        ]);
+        //return back()->withInput()->with('status', 'berhasil');       
+        return redirect("/penelitian/form/{$penelitianModel->id}/edit")->with('status', 'berhasil');
     }
 
     /**

@@ -78,15 +78,10 @@
                                   <a href='{{ url("/download/{$key->file}") }}' target="_blank">File</a>
                                 </td>
                                 <td>{{ $key->tahun }}</td>                                                                                            
-                                <td>                 
-                                  <form action='{{ url("/penelitian/form/{$key->id}/edit") }}' method="post">
-                                    @method('POST')
-                                    @csrf
-                                    <button title="Edit" type="submit" class="btn-link badge bg-blue">
-                                      <span class="fa fa-edit">
-                                    </button>
-                                  </form>                 
-                                    <!-- <a title="Edit" class="btn btn-default btn btn-circle badge bg-blue" href='{{ url("/penelitian/form/{$key->id}/edit") }}'><span class="fa fa-edit"></span></a> -->
+                                <td>                                                   
+                                    <a title="Edit" class="btn btn-circle badge bg-blue" href='{{ url("/penelitian/form/{$key->id}/edit") }}'>
+                                      <span class="fa fa-edit"></span>
+                                    </a>
                                 </td>
                                 <td>              
                                   <form action='{{ url("/penelitian/delete/{$key->id}") }}' method="post">

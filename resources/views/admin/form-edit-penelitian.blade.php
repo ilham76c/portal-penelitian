@@ -46,13 +46,13 @@
                         @endif
                         
                         
-                        <form role="form" action="{{ url('/skripsi/update') }}" method="POST" enctype="multipart/form-data">
-                            @method('PATCH')
+                        <form role="form" action='{{ url("/penelitian/update/{$penelitian->id}") }}' method="POST" enctype="multipart/form-data">
+                            @method('PUT')
                             @csrf
                             <!-- /.box -->
                             <div class="box-footer">                                
                                 <button type="reset" name="reset" class="btn btn-info">Reset</button>
-                                <button id="btn_form_penelitian" type="submit" class="btn btn-primary pull-right">Update</button>
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
                             </div>
 
                             <div class="box">
@@ -74,7 +74,7 @@
                                     <!-- text input -->
                                     <div class="form-group @error('penulis') has-error @enderror">
                                         <label>Nama Penulis:</label>
-                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,',\s]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama penulis" value="{{ $penelitian->nama }}">
+                                        <input name="penulis" type="text"  oninput="this.value = this.value.replace(/[^A-Za-z.,',\s]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Nama penulis" value="{{ $penelitian->penulis }}">
                                         @error('penulis')
                                             <span class="help-block">{{$message}}</span>                    
                                         @enderror
@@ -104,7 +104,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right" value="{{ $penelitian->tahun }}">
+                                            <input id="datepicker" name="tahun" type="text" class="form-control pull-right" placeholder="Tahun penelitian" value="{{ $penelitian->tahun }}">
                                         </div>
                                         @error('tahun')
                                             <span class="help-block">{{$message}}</span>                    
@@ -217,11 +217,11 @@
         });
 
         $('button[name="reset"]').on('click', function() {
-            $('input[name="penulis"]').html('');
-            $('input[name="nrp"]').html('');
+            $('input[name="penulis"]').attr('value', '');
+            $('input[name="nrp"]').attr('value', '');
             $('input[name="file"]').html('');
-            $('input[name="tahun"]').html('');
-            $('input[name="kata_kunci"]').html('');
+            $('input[name="tahun"]').attr('value', '');
+            $('input[name="kata_kunci"]').attr('value', '');
             CKEDITOR.instances['editor1'].setData('');
             CKEDITOR.instances['editor2'].setData('');
         });
