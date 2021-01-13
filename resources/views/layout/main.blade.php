@@ -32,8 +32,8 @@
                                 <!-- <span class="sr-only">(current)</span> -->
                             </a>
                         </li>
-                        <li class="nav-item {{request()->is('skripsi') ? 'active' : ''}}">
-                            <a class="nav-link" href="{{ url('/skripsi') }}">Skripsi</a>
+                        <li class="nav-item {{request()->is('penelitian') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{ url('/penelitian') }}">Penelitian</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Jurnal</a>

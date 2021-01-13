@@ -50,7 +50,7 @@
                             </tr>
                         </table>                                                            
                     </div>
-                    <a href='{{ url("/skripsi/show/{$p->id}") }}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
+                    <a href='{{ url("/penelitian/show/{$p->id}") }}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
                 </div>
             </div>
             @endforeach
@@ -112,7 +112,7 @@
                     $("#p_judul").html(response.judul);
                     $("#p_abstrak").html(response.abstrak);
                     $("#p_penulis").html(response.penulis);
-                    $("#p_file").attr("href", `{{ url('/download/${response.file}') }}`);
+                    $("#p_file").attr("href", `{{ url('/penelitian/download/${response.file}') }}`);
                     $("#exampleModal").modal("show");                    
                 },
                 error: e => {
