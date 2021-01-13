@@ -75,7 +75,7 @@
                                 <td>{{ $key->penulis }}</td>
                                 <td>{{ $key->nrp }}</td>
                                 <td>
-                                  <a href='{{ url("/download/{$key->file}") }}' target="_blank">File</a>
+                                  <a href='{{ url("/penelitian/download/{$key->file}") }}' target="_blank">File</a>
                                 </td>
                                 <td>{{ $key->tahun }}</td>                                                                                            
                                 <td>                                                   
