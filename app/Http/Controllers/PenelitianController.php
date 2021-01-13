@@ -19,7 +19,7 @@ class PenelitianController extends Controller
     public function index()
     {
         $penelitian = PenelitianModel::paginate(6);
-        return view("user.skripsi", compact("penelitian"));
+        return view("user.penelitian", compact("penelitian"));
     }
 
     /**
@@ -29,7 +29,7 @@ class PenelitianController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.form-tambah-penelitian");
     }
 
     /**
@@ -84,8 +84,8 @@ class PenelitianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(PenelitianModel $penelitianModel)
-    {
-        //
+    {                
+        return view("admin.form-edit-penelitian", ['penelitian' => $penelitianModel]);
     }
 
     /**
@@ -97,7 +97,13 @@ class PenelitianController extends Controller
      */
     public function update(Request $request, PenelitianModel $penelitianModel)
     {
-        //
+        // PenelitianModel::where('id', $penelitianModel->id)->update(
+        //     'judul'   => $request->judul,
+        //     'abstrak' => $request->abstrak,
+        //     'penulis' => $request->penulis,
+        //     'nrp'     => $request->nrp,
+        // );
+        return $request;
     }
 
     /**
@@ -107,7 +113,8 @@ class PenelitianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(PenelitianModel $penelitianModel)
-    {
+    {        
+        Storage::delete("uploads/{$penelitianModel->file}");
         PenelitianModel::destroy($penelitianModel->id);
         return redirect('/penelitian/table');
     }
