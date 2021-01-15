@@ -98,8 +98,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu active">
-                            <li class="{{request()->is('aplikasi/form') ? 'active' : ''}}">
-                                <a href="{{ url('/aplikasi/form') }}">
+                            <li class="{{request()->is('aplikasi/form/tambah') ? 'active' : ''}}">
+                                <a href="{{ url('/aplikasi/form/tambah') }}">
                                     <i class="fa fa-plus-circle"></i> <span>Tambah Data</span>
                                 </a>
                             </li>

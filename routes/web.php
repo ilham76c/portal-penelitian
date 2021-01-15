@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenelitianController;
+use App\Http\Controllers\AplikasiController;
 use App\Models\PenelitianModel;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "
 Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
 Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);
 
+Route::get("/aplikasi/form/tambah", [AplikasiController::class,"create"]);
+Route::post("/aplikasi/store", [AplikasiController::class,"store"]);
+
 Route::get("/dashboard", [AdminController::class, "index"]);
-Route::get("/aplikasi/table", [AdminController::class,"aplikasiTable"]);
 Route::get("/aplikasi/form", [AdminController::class, "aplikasiForm"]);
 

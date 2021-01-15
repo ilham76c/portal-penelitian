@@ -24,7 +24,7 @@ class AplikasiController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.form-tambah-aplikasi");
     }
 
     /**
@@ -35,7 +35,22 @@ class AplikasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "url" => "required",
+            "nama" => "required",
+            "deskripsi" => "required"            
+        ]);
+                
+        $query = AplikasiModel::create([
+            "url" => $request->url,
+            "nama" => $request->nama,
+            "deskripsi" => $request->deskripsi            
+        ]);
+
+        if (!$query) {
+            return back()->withInput()->with('status', 'gagal');
+        }
+        return back()->withInput()->with('status', 'berhasil');  
     }
 
     /**

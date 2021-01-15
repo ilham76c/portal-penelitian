@@ -51,11 +51,33 @@
                 <!-- Start creating your amazing application! -->
                 <div class="row">
                     <div class="col-md-12">
-                        <form role="form">
+                        @if (session('status') == 'berhasil')
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>                                
+                                Data berhasil ditambahkan!!
+                            </div>
+                        @elseif (session('status') == 'gagal')
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                Gagal menambahkan data!!
+                            </div>
+                        @endif
+
+                        <form role="form" action="{{ url('aplikasi/store') }}" method="post">
+                        @method('POST')
+                        @csrf
+                        <!-- /.box -->
+                        <div class="box-footer">
+                            <button name="reset" type="reset" class="btn btn-info">Reset</button>
+                            <button type="submit" class="btn btn-primary pull-right">Tambah</button>
+                        </div>
+
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">
-                                    <b>URL Aplikasi</b>
+                                    <b>Form Tambah Aplikasi</b>
                                 </h3>
                                 <!-- tools box -->
                                 <div class="pull-right box-tools">
@@ -69,9 +91,12 @@
                             <!-- /.box-header -->
                             <div class="box-body pad">                                        
                                 <!-- text input -->
-                                <div class="form-group">
-                                    <!-- <label>URL:</label> -->
-                                    <input type="text" class="form-control" placeholder="URL aplikasi">
+                                <div class="form-group @error('url') has-error @enderror">
+                                    <label>URL Aplikasi:</label>
+                                    <input name="url" type="text" class="form-control" placeholder="URL aplikasi" value="{{ old('url') }}">
+                                    @error('url')
+                                        <span class="help-block">{{ $message }}</span>                    
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -90,8 +115,13 @@
                                 <!-- /. tools -->
                             </div>
                             <!-- /.box-header -->
-                            <div class="box-body pad">                                        
-                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 75px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>                                    
+                            <div class="box-body pad @error('nama') has-error @enderror">  
+                                @error('nama')
+                                    <span class="help-block">{{ $message }}</span>                    
+                                @enderror                                      
+                                <textarea id="editor2" name="nama" rows="10" cols="80">
+                                    {{ old('nama') }}
+                                </textarea>                                    
                             </div>
                         </div>
                                                         
@@ -110,17 +140,16 @@
                                 <!-- /. tools -->
                             </div>
                             <!-- /.box-header -->
-                            <div class="box-body pad">                                        
-                                <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                    
+                            <div class="box-body pad @error('deskripsi') has-error @enderror">                                        
+                                @error('deskripsi')
+                                    <span class="help-block">{{ $message }}</span>                    
+                                @enderror   
+                                <textarea id="editor1" name="deskripsi" rows="10" cols="80">
+                                    {{ old('deskripsi') }}
                                 </textarea>                                        
                             </div>
                         </div>
-                        <!-- /.box -->
-                        <div class="box-footer">
-                            <button type="reset" class="btn btn-info">Reset</button>
-                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                        </div>
+                        
                     </form>
                     </div>
                     <!-- /.col-->
@@ -153,11 +182,18 @@
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
         //bootstrap WYSIHTML5 - text editor
-        $('.textarea').wysihtml5();
+        //$('.textarea').wysihtml5();
 
         $('#datepicker').datepicker({
             autoclose: true
+        });
+
+        $('button[name="reset"]').on('click', function() {
+            $('input[name="url"]').html('');            
+            CKEDITOR.instances['editor1'].setData('');
+            CKEDITOR.instances['editor2'].setData('');
         });
     });            
 </script>
