@@ -26,7 +26,7 @@
     <!-- Content -->
     <!-- <div class="container-fluid p-5"> -->
     <div class="container-fluid d-flex justify-content-center pb-5 flex-wrap"> 
-            @foreach($penelitian as $p)
+        @forelse ($penelitian as $p)
             <div class="card shadow mx-1 mx-lg-3 mx-md-2 my-2 my-lg-4 my-md-3" style="width: 22rem;">
                 <div class="card-body d-flex flex-column yrav-card-effect">
                     <div class="d-flex">                                
@@ -53,7 +53,9 @@
                     <a href='{{ url("/penelitian/show/{$p->id}") }}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
                 </div>
             </div>
-            @endforeach
+        @empty
+            <h3>Tidak ada data penelitian!!</h3>
+        @endforelse 
                         
     </div>
     <div class="container d-flex justify-content-center align-items-center pb-4">
