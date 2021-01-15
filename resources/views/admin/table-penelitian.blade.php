@@ -58,8 +58,8 @@
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>Judul</th>
-                            <!-- <th>Abstrak</th> -->
+                            <th>No</th>
+                            <th>Judul</th>                            
                             <th>Penulis</th>
                             <th>NRP</th>
                             <th>File</th>   
@@ -70,8 +70,8 @@
                         <tbody>                        
                           @forelse ($penelitian as $key)
                             <tr>
-                                <td>{!! $key->judul !!}</td>
-                                <!-- <td>{!! $key->abstrak !!}</td> -->
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{!! $key->judul !!}</td>                                
                                 <td>{{ $key->penulis }}</td>
                                 <td>{{ $key->nrp }}</td>
                                 <td>
@@ -127,7 +127,7 @@
         $('#example1').DataTable({
           'aoColumnDefs': [{
             'bSortable': false,
-            'aTargets': [3,5,6] /* 1st one, start by the right */
+            'aTargets': [4,6,7] /* 1st one, start by the right */
           }]
         });            
     });        
