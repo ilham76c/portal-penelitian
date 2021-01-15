@@ -49,6 +49,7 @@ class PenelitianController extends Controller
             "penulis" => "required",
             "nrp" => "required|max:12",
             "tahun" => "required|max:10",
+            "kata_kunci" => "required",
             "file" => "required"
         ]);
         $path = $request->file->storePublicly("uploads");
@@ -59,7 +60,8 @@ class PenelitianController extends Controller
             "penulis" => $request->penulis,
             "nrp" => $request->nrp,
             "file" => explode("/", $path)[1],
-            "tahun" => $request->tahun
+            "tahun" => $request->tahun,
+            "kata_kunci" => $request->kata_kunci
         ]);
 
         if (!$query) {
@@ -109,7 +111,8 @@ class PenelitianController extends Controller
             'penulis' => $request->penulis,
             'nrp'     => $request->nrp,
             'file'    => $penelitianModel->file,
-            'tahun'   => $request->tahun
+            'tahun'   => $request->tahun,
+            'kata_kunci' => $request->kata_kunci
         ]);
         //return back()->withInput()->with('status', 'berhasil');       
         return redirect("/penelitian/form/{$penelitianModel->id}/edit")->with('status', 'berhasil');

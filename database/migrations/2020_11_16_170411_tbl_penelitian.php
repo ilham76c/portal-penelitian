@@ -20,7 +20,8 @@ class TblPenelitian extends Migration
             $table->text("abstrak");
             $table->string("penulis");
             $table->char("nrp", 12);
-            $table->string("tahun");            
+            $table->string("tahun");  
+            $table->string("kata_kunci");          
             $table->text("file");
             $table->timestamps();
             $table->engine = "InnoDB";

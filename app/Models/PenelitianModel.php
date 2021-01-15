@@ -21,6 +21,7 @@ class PenelitianModel extends Model
         "penulis",
         "nrp",
         "tahun",
+        "kata_kunci",
         "file"    
     ];
 }
