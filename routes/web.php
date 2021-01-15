@@ -35,6 +35,7 @@ Route::get("/aplikasi/form/tambah", [AplikasiController::class,"create"]);
 Route::post("/aplikasi/store", [AplikasiController::class,"store"]);
 Route::get("/aplikasi/form/{aplikasiModel}/edit", [AplikasiController::class, "edit"]);
 Route::put("/aplikasi/update/{aplikasiModel}", [AplikasiController::class, "update"]);
+Route::delete("/aplikasi/delete/{aplikasiModel}", [PenelitianController::class, "destroy"]);
 
 Route::get("/dashboard", [AdminController::class, "index"]);
 Route::get("/aplikasi/form", [AdminController::class, "aplikasiForm"]);

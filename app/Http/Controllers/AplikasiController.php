@@ -93,7 +93,7 @@ class AplikasiController extends Controller
             "nama" => "required",
             "deskripsi" => "required"            
         ]);
-        
+
         $query = AplikasiModel::where('id', $aplikasiModel->id)->update([
             'url' => $request->url,
             'nama' => $request->nama,
@@ -114,6 +114,7 @@ class AplikasiController extends Controller
      */
     public function destroy(AplikasiModel $aplikasiModel)
     {
-        //
+        AplikasiModel::destroy($aplikasiModel->id);
+        return redirect('/aplikasi/table');
     }
 }
