@@ -5,10 +5,11 @@ namespace App\Models;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PenelitianModel extends Model
+class AplikasiModel extends Model
 {
     //use HasFactory;
-    protected $table = "tbl_penelitian";
+
+    protected $table = "tbl_aplikasi";
 
     protected $hidden = [
         "created_at",
@@ -16,12 +17,8 @@ class PenelitianModel extends Model
     ];
 
     protected $fillable = [
-        "judul",
-        "abstrak",
-        "penulis",
-        "nrp",
-        "tahun",
-        "kata_kunci",
-        "file"    
+        "url",
+        "nama",
+        "deskripsi"
     ];
 }
