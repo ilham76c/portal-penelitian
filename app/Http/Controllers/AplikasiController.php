@@ -14,7 +14,11 @@ class AplikasiController extends Controller
      */
     public function index()
     {
-        //
+        // mengambil data aplikasi dari database
+        $aplikasi = AplikasiModel::select()->get();
+
+        // berpindah ke halaman Datatable Aplikasi dan mengirimkan variable "$aplikasi" yang berisi data penelitian 
+        return view("admin.table-aplikasi", compact("aplikasi"));
     }
 
     /**

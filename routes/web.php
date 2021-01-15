@@ -30,6 +30,7 @@ Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "
 Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
 Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);
 
+Route::get("/aplikasi/table", [AplikasiController::class, "index"]);
 Route::get("/aplikasi/form/tambah", [AplikasiController::class,"create"]);
 Route::post("/aplikasi/store", [AplikasiController::class,"store"]);
 
