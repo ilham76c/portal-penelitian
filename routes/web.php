@@ -33,6 +33,8 @@ Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "dow
 Route::get("/aplikasi/table", [AplikasiController::class, "index"]);
 Route::get("/aplikasi/form/tambah", [AplikasiController::class,"create"]);
 Route::post("/aplikasi/store", [AplikasiController::class,"store"]);
+Route::get("/aplikasi/form/{aplikasiModel}/edit", [AplikasiController::class, "edit"]);
+Route::put("/aplikasi/update/{aplikasiModel}", [AplikasiController::class, "update"]);
 
 Route::get("/dashboard", [AdminController::class, "index"]);
 Route::get("/aplikasi/form", [AdminController::class, "aplikasiForm"]);

@@ -42,26 +42,41 @@
                             <th>Nama</th>
                             <th>Deskripsi</th>
                             <th>Aplikasi</th>
+                            <th colspan="2">#</th>                                                        
                           </tr>                                                                               
                         </thead>
                         <tbody>
                           @forelse ($aplikasi as $key)
                             <tr>
                               <td>{{ $loop->iteration }}</td>
-                              <td>{{ $key->nama }}</td>
-                              <td>{{ $key->deskripsi }}</td>
+                              <td>{!! $key->nama !!}</td>
+                              <td>{!! $key->deskripsi !!}</td>
                               <td>
-                                <a href="{{ $key->url }}">aplikasi</a>
+                                <a href="{{ $key->url }}" target="_blank">aplikasi</a>
+                              </td>
+                              <td>                                                   
+                                <a title="Edit" class="btn btn-circle badge bg-blue" href='{{ url("/aplikasi/form/{$key->id}/edit") }}'>
+                                  <span class="fa fa-edit"></span>
+                                </a>
+                              </td>
+                              <td>              
+                                <form action='{{ url("/aplikasi/delete/{$key->id}") }}' method="post">
+                                  @method('delete')
+                                  @csrf
+                                  <button title="Delete" type="submit" class="btn-link badge bg-red" onclick="return confirm('Anda yakin untuk menghapus data?')">
+                                    <span class="fa fa-trash"></span>
+                                  </button>
+                                </form>            
                               </td>
                             </tr>
                           @empty
                             <tr>
-                              <td class="text-center" colspan="4">
+                              <td class="text-center" colspan="6">
                                 <h5>Tidak ada data aplikasi!!</h5>
                               </td>
                             </tr>                              
                           @endforelse  
-                        </tbody>
+                        </tbody>                        
                       </table>
                     </div>
                     <!-- /.box-body -->
@@ -91,7 +106,7 @@
       $('#example1').DataTable({
         'aoColumnDefs': [{
           'bSortable': false,
-          'aTargets': [3] /* 1st one, start by the right */
+          'aTargets': [3,4,5] /* 1st one, start by the right */
         }]
       });          
     });        

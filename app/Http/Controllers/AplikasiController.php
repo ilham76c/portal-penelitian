@@ -75,8 +75,8 @@ class AplikasiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(AplikasiModel $aplikasiModel)
-    {
-        //
+    {        
+        return view("admin.form-edit-aplikasi", ['aplikasi' => $aplikasiModel]);
     }
 
     /**
@@ -88,7 +88,22 @@ class AplikasiController extends Controller
      */
     public function update(Request $request, AplikasiModel $aplikasiModel)
     {
-        //
+        $request->validate([
+            "url" => "required",
+            "nama" => "required",
+            "deskripsi" => "required"            
+        ]);
+        
+        $query = AplikasiModel::where('id', $aplikasiModel->id)->update([
+            'url' => $request->url,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi
+        ]);
+
+        if (!$query) {
+            return redirect("/aplikasi/form/{$aplikasiModel->id}/edit")->with('status', 'gagal');
+        }
+        return redirect("/aplikasi/form/{$aplikasiModel->id}/edit")->with('status', 'berhasil');
     }
 
     /**
