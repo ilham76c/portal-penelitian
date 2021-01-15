@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PenelitianModel;
+use App\Models\AplikasiModel;
 
 class UserController extends Controller
 {
@@ -20,6 +21,7 @@ class UserController extends Controller
 
     public function aplikasi()
     {
-        return view("user.aplikasi");
+        $aplikasi = AplikasiModel::paginate(6);
+        return view("user.aplikasi", compact("aplikasi"));
     }
 }
