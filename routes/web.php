@@ -22,6 +22,7 @@ Route::get("/penelitian", [UserController::class, "penelitian"]);
 Route::get("/aplikasi", [UserController::class, "aplikasi"]);
 
 Route::get("/penelitian/download/{fileName}", [PenelitianController::class, "download"]);
+Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "show"]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get("/dashboard", [AdminController::class, "index"]);
@@ -31,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get("/penelitian/form/tambah", [PenelitianController::class, "create"]);
     Route::put("/penelitian/update/{penelitianModel}", [PenelitianController::class, "update"]);
     Route::get("/penelitian/form/{penelitianModel}/edit", [PenelitianController::class, "edit"]);
-    Route::get("/penelitian/show/{penelitianModel}", [PenelitianController::class, "show"]);
+    
     Route::delete("/penelitian/delete/{penelitianModel}", [PenelitianController::class, "destroy"]);
 
     Route::get("/aplikasi/form/tambah", [AplikasiController::class,"create"]);
