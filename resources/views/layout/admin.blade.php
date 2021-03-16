@@ -9,16 +9,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('dist/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('dist/css/skins/_all-skins.min.css') }}">
 
     @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,7 +67,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="{{request()->is('dashboard') ? 'active' : ''}}">
-                        <a href="{{ url('/dashboard') }}">
+                        <a href="{{ secure_url('/dashboard') }}">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
@@ -80,12 +80,12 @@
                         </a>
                         <ul class="treeview-menu">
                             <li class="{{request()->is('penelitian/form/tambah') ? 'active' : ''}}">
-                                <a href="{{ url('/penelitian/form/tambah') }}">
+                                <a href="{{ secure_url('/penelitian/form/tambah') }}">
                                     <i class="fa fa-plus-circle"></i> <span>Tambah Data</span>
                                 </a>
                             </li>
                             <li class="{{request()->is('penelitian/table') ? 'active' : ''}}">
-                                <a href="{{ url('/penelitian/table') }}">
+                                <a href="{{ secure_url('/penelitian/table') }}">
                                     <i class="fa fa-table"></i> <span>Lihat Data</span>
                                 </a>
                             </li>
@@ -100,12 +100,12 @@
                         </a>
                         <ul class="treeview-menu active">
                             <li class="{{request()->is('aplikasi/form/tambah') ? 'active' : ''}}">
-                                <a href="{{ url('/aplikasi/form/tambah') }}">
+                                <a href="{{ secure_url('/aplikasi/form/tambah') }}">
                                     <i class="fa fa-plus-circle"></i> <span>Tambah Data</span>
                                 </a>
                             </li>
                             <li class="{{request()->is('aplikasi/table') ? 'active' : ''}}">
-                                <a href="{{ url('/aplikasi/table') }}">
+                                <a href="{{ secure_url('/aplikasi/table') }}">
                                     <i class="fa fa-table"></i> <span>Lihat Data</span>
                                 </a>
                             </li>
@@ -113,7 +113,7 @@
                     </li>
                     <li class="header">LABELS</li>
                     <li>
-                        <form action="{{ url('logout') }}" method="post">
+                        <form action="{{ secure_url('logout') }}" method="post">
                             @method('POST')
                             @csrf
                             <button class="btn btn-link" type="submit">
@@ -152,17 +152,17 @@
     <!-- ./wrapper -->
 
     <!-- jQuery 3 -->
-    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ secure_asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- SlimScroll -->
-    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ secure_asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
-    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
+    <script src="{{ secure_asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ secure_asset('dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
+    <script src="{{ secure_asset('dist/js/demo.js') }}"></script>
 
     @yield('js')
 </body>

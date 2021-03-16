@@ -3,9 +3,9 @@
 
 @section("css")
 <!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 <!-- bootstrap datepicker -->
-<link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
@@ -46,7 +46,7 @@
                         @endif
                         
                         
-                        <form role="form" action='{{ url("/penelitian/update/{$penelitian->id}") }}' method="POST" enctype="multipart/form-data">
+                        <form role="form" action='{{ secure_url("/penelitian/update/{$penelitian->id}") }}' method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <!-- /.box -->
@@ -195,11 +195,11 @@
 
 @section('js')
 <!-- CK Editor -->
-<script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ secure_asset('bower_components/ckeditor/ckeditor.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<script src="{{ secure_asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- bootstrap datepicker -->
-<script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ secure_asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
     $(document).ready(function() {    
         // Replace the <textarea id="editor1"> with a CKEditor

@@ -6,7 +6,7 @@
 
 @section("css")
 <!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
 
 
@@ -75,16 +75,16 @@
                                 <td>{{ $key->penulis }}</td>
                                 <td>{{ $key->nrp }}</td>
                                 <td>
-                                  <a href='{{ url("/penelitian/download/{$key->file}") }}' target="_blank">File</a>
+                                  <a href='{{ secure_url("/penelitian/download/{$key->file}") }}' target="_blank">File</a>
                                 </td>
                                 <td>{{ $key->tahun }}</td>                                                                                            
                                 <td>                                                   
-                                    <a title="Edit" class="btn btn-circle badge bg-blue" href='{{ url("/penelitian/form/{$key->id}/edit") }}'>
+                                    <a title="Edit" class="btn btn-circle badge bg-blue" href='{{ secure_url("/penelitian/form/{$key->id}/edit") }}'>
                                       <span class="fa fa-edit"></span>
                                     </a>
                                 </td>
                                 <td>              
-                                  <form action='{{ url("/penelitian/delete/{$key->id}") }}' method="post">
+                                  <form action='{{ secure_url("/penelitian/delete/{$key->id}") }}' method="post">
                                     @method('delete')
                                     @csrf
                                     <button title="Delete" type="submit" class="btn-link badge bg-red" onclick="return confirm('Anda yakin untuk menghapus data?')">
@@ -120,8 +120,8 @@
     
 @section('js')
 <!-- DataTables -->
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ secure_asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ secure_asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
     $(function() {
         $('#example1').DataTable({
