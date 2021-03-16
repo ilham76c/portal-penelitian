@@ -10,7 +10,7 @@
             <h1 class="display-3 mb-1">Portal Data Penelitian</h1>
             <p class="lead">
                 Teknik Informatika <br>
-                <span>Universita Trunojoyo Madura</span>
+                <span>Universitas Trunojoyo Madura</span>
             </p>
         </div>
     </div> 
