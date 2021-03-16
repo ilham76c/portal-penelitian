@@ -9,7 +9,7 @@
         <form>
             <div class="row justify-content-center">
                 <div class="form-group col-7">
-                    <input id="exampleFormControlInput5" type="email" placeholder="Pencarian" class="form-control form-control-underlined yrav-bg-abu">
+                    <input id="exampleFormControlInput5" type="text" placeholder="Pencarian" class="form-control form-control-underlined yrav-bg-abu">
                 </div>
                 <div class="form-group col-1">
                     <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
