@@ -35,12 +35,12 @@
                             </svg>                     
                         </div> 
                         <div class="col">
-                            <h5 class="card-title ml-4 mb-0">{{ $key->nama }}</h5>
+                            <h5 class="card-title ml-4 mb-0">{!! $key->nama !!}</h5>
                         </div>
                     </div>                 
 
                     <div class="card-text text-justify my-3 p-2">
-                        &emsp;&emsp;{{ $key->deskripsi }}
+                        &emsp;&emsp;{!! $key->deskripsi !!}
                     </div>
                     
                     <a href="{{ $key->url }}" class="card-link mt-auto btn btn-outline-info btn-sm">Mulai</a>
