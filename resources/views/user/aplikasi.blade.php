@@ -50,5 +50,8 @@
             <h3>Tidak ada data aplikasi!!</h3>
         @endforelse 
     </div>
+    <div class="container d-flex justify-content-center align-items-center pb-4">
+        {{ $aplikasi->links("vendor.pagination.bootstrap-4") }}
+    </div>
 </main>        
 @endsection
