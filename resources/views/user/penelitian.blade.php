@@ -126,24 +126,28 @@
         function searchPenelitian() {
             const penelitian = {!! json_encode($penelitian) !!};
             const search_query = $('#text-search').val().toLowerCase().split(/\s/).filter(val => val);
-            const search_result = [];
-
-            for (const iterator in penelitian.data) {
-                if (
-                    [...search_query].some(query => (jQuery(penelitian.data[iterator].judul).text().toLowerCase()).includes(query))
-                    ||
-                    [...search_query].some(query => (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes(query))
-                    ||
-                    [...search_query].some(query => penelitian.data[iterator].kata_kunci.toLowerCase().includes(query))
-                    ||
-                    [...search_query].some(query => penelitian.data[iterator].nrp.toLowerCase().includes(query))
-                    ||
-                    [...search_query].some(query => penelitian.data[iterator].penulis.toLowerCase().includes(query))
-                    ||
-                    [...search_query].some(query => penelitian.data[iterator].tahun.includes(query))
-                ) {
-                    search_result.push(penelitian.data[iterator])
+            let search_result = [];
+            
+            if (search_query.length) {
+                for (const iterator in penelitian.data) {
+                    if (
+                        [...search_query].some(query => (jQuery(penelitian.data[iterator].judul).text().toLowerCase()).includes(query))
+                        ||
+                        [...search_query].some(query => (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes(query))
+                        ||
+                        [...search_query].some(query => penelitian.data[iterator].kata_kunci.toLowerCase().includes(query))
+                        ||
+                        [...search_query].some(query => penelitian.data[iterator].nrp.toLowerCase().includes(query))
+                        ||
+                        [...search_query].some(query => penelitian.data[iterator].penulis.toLowerCase().includes(query))
+                        ||
+                        [...search_query].some(query => penelitian.data[iterator].tahun.includes(query))
+                    ) {
+                        search_result.push(penelitian.data[iterator])
+                    }
                 }
+            } else {
+                search_result = [...penelitian.data];
             }
 
             let penelitian_card = '';
@@ -186,18 +190,14 @@
         }
 
         $("#btn-search").on("click", function() {
-            if ($('#text-search').val().trim()) {
-                searchPenelitian();
-                $('#text-search').focus();   
-            }
+            searchPenelitian();
+            $('#text-search').focus();   
         });
 
         $('form').submit(function(e) {
             e.preventDefault();
-            if ($('#text-search').val().trim()) {
-                searchPenelitian();
-                $('#text-search').focus();   
-            }
+            searchPenelitian();
+            $('#text-search').focus();   
         });
     });    
 </script>
