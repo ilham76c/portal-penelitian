@@ -54,7 +54,7 @@
                 </div>
             </div>
         @empty
-            <h3>Tidak ada data penelitian!!</h3>
+            <h4>Tidak ada data!</h4>
         @endforelse 
                         
     </div>

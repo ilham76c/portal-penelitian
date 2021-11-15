@@ -47,7 +47,7 @@
                 </div>
             </div>
         @empty
-            <h3>Tidak ada data aplikasi!!</h3>
+            <h4>Tidak ada data!</h4>
         @endforelse 
     </div>
     <div class="container d-flex justify-content-center align-items-center pb-4">
