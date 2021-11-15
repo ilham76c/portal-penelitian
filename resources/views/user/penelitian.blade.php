@@ -123,55 +123,77 @@
             });
         });
 
-        $("#text-search").change(function() {
-            console.log(this.value)
+        function searchPenelitian() {
             const penelitian = {!! json_encode($penelitian) !!};
+            const search_query = $('#text-search').val().toLowerCase().split(/\s/);
             const search_result = [];
+
             for (const iterator in penelitian.data) {
                 if (
-                    (jQuery(penelitian.data[iterator].judul).text()).includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => (jQuery(penelitian.data[iterator].judul).text().toLowerCase()).includes(query))
                     ||
-                    penelitian.data[iterator].kata_kunci.includes($('#text-search').val().toLowerCase())
+                    (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes($('#text-search').val().toLowerCase())
                     ||
-                    (jQuery(penelitian.data[iterator].abstract).text()).includes($('#text-search').val().toLowerCase())
+                    penelitian.data[iterator].kata_kunci.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    ||
+                    penelitian.data[iterator].nrp.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    ||
+                    penelitian.data[iterator].penulis.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    ||
+                    penelitian.data[iterator].tahun.includes($('#text-search').val().toLowerCase())
                 ) {
                     search_result.push(penelitian.data[iterator])
                 }
             }
 
             let penelitian_card = '';
-            for (const key of search_result) {
-                penelitian_card += `
-                <div class="card shadow mx-1 mx-lg-3 mx-md-2 my-2 my-lg-4 my-md-3" style="width: 22rem;">
-                    <div class="card-body d-flex flex-column yrav-card-effect">
-                        <div class="d-flex">                                
-                            <div class="d-flex flex-column align-items-center">
-                                <svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-journal-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-                                    <path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                                </svg>
-                                <p class="text-muted mt-1">${key.tahun}</p>
-                            </div>                                                                    
-                            <h5 class="card-title ml-3">${key.judul}</h5>                                
+            if (search_result.length) {
+                for (const key of search_result) {
+                    penelitian_card += `
+                    <div class="card shadow mx-1 mx-lg-3 mx-md-2 my-2 my-lg-4 my-md-3" style="width: 22rem;">
+                        <div class="card-body d-flex flex-column yrav-card-effect">
+                            <div class="d-flex">                                
+                                <div class="d-flex flex-column align-items-center">
+                                    <svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-journal-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                        <path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                    <p class="text-muted mt-1">${key.tahun}</p>
+                                </div>                                                                    
+                                <h5 class="card-title ml-3">${key.judul}</h5>                                
+                            </div>
+                                                        
+                            <div class="card-text pb-4">     
+                                Penulis:
+                                <table class="table-responsive text-muted">
+                                    <tr>
+                                        <td class="align-top">&emsp;-&nbsp;</td>
+                                        <td>${key.penulis} (${key.nrp})</td>
+                                    </tr>
+                                </table>                                                            
+                            </div>
+                            <a href='{{ secure_url("/penelitian/show/") }}/${key.id}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
                         </div>
-                                                    
-                        <div class="card-text pb-4">     
-                            Penulis:
-                            <table class="table-responsive text-muted">
-                                <tr>
-                                    <td class="align-top">&emsp;-&nbsp;</td>
-                                    <td>${key.penulis} (${key.nrp})</td>
-                                </tr>
-                            </table>                                                            
-                        </div>
-                        <a href='{{ secure_url("/penelitian/show/") }}/${key.id}' class="card-link mt-auto btn btn-outline-info btn-sm btn-abstrak" data-toggle="modal">Detail</a>
                     </div>
-                </div>
-                `;
+                    `;
+                }
+            } else {
+                penelitian_card = '<h4>Pencarian tidak ditemukan!</h4>';
             }
 
             $('#penelitian').html(penelitian_card);
+        }
+
+        $("#btn-search").on("click", function() {
+            searchPenelitian();
+            $('#text-search').focus();
+        });
+
+        $('form').submit(function(e) {
+            e.preventDefault();
+            searchPenelitian();
+            $('#text-search').focus();
         });
     });    
 </script>
