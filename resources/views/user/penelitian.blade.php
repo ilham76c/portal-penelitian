@@ -125,22 +125,22 @@
 
         function searchPenelitian() {
             const penelitian = {!! json_encode($penelitian) !!};
-            const search_query = $('#text-search').val().toLowerCase().split(/\s/);
+            const search_query = $('#text-search').val().toLowerCase().split(/\s/).filter(val => val);
             const search_result = [];
 
             for (const iterator in penelitian.data) {
                 if (
                     [...search_query].some(query => (jQuery(penelitian.data[iterator].judul).text().toLowerCase()).includes(query))
                     ||
-                    (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes(query))
                     ||
-                    penelitian.data[iterator].kata_kunci.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => penelitian.data[iterator].kata_kunci.toLowerCase().includes(query))
                     ||
-                    penelitian.data[iterator].nrp.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => penelitian.data[iterator].nrp.toLowerCase().includes(query))
                     ||
-                    penelitian.data[iterator].penulis.toLowerCase().includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => penelitian.data[iterator].penulis.toLowerCase().includes(query))
                     ||
-                    penelitian.data[iterator].tahun.includes($('#text-search').val().toLowerCase())
+                    [...search_query].some(query => penelitian.data[iterator].tahun.includes(query))
                 ) {
                     search_result.push(penelitian.data[iterator])
                 }
@@ -186,14 +186,18 @@
         }
 
         $("#btn-search").on("click", function() {
-            searchPenelitian();
-            $('#text-search').focus();
+            if ($('#text-search').val().trim()) {
+                searchPenelitian();
+                $('#text-search').focus();   
+            }
         });
 
         $('form').submit(function(e) {
             e.preventDefault();
-            searchPenelitian();
-            $('#text-search').focus();
+            if ($('#text-search').val().trim()) {
+                searchPenelitian();
+                $('#text-search').focus();   
+            }
         });
     });    
 </script>
