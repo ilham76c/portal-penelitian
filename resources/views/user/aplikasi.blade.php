@@ -4,7 +4,7 @@
 @section('title', 'Web Ta | Aplikasi')
 
 @section('main')
-<main class="yrav-bg-abu">
+<main class="yrav-bg-abu" style="min-height: 80vh;">
     <div class="container pt-4 pt-lg-5 pb-2 pb-lg-4 pb-md-3">
         <form>
             <div class="row justify-content-center">
