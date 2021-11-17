@@ -90,7 +90,7 @@
                         <!-- tag dengan 'id=p_abstrak' akan berisi abstrak penelitian -->
                         <p class="text-justify" id="p_abstrak"></p>
         
-                        <h6 class="text-secondary">Kata Kunci : Aplikasi Penerjemah Bahasa, Free Contex Parsing Algorithm</h6>
+                        <h6 class="text-secondary">Kata Kunci : <span id="p_kata_kunci"></span></h6>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -114,6 +114,7 @@
                     $("#p_judul").html(response.judul);
                     $("#p_abstrak").html(response.abstrak);
                     $("#p_penulis").html(response.penulis);
+                    $("#p_kata_kunci").html(response.kata_kunci);
                     $("#p_file").attr("href", `{{ secure_url('/penelitian/download/${response.file}') }}`);
                     $("#exampleModal").modal("show");                    
                 },
