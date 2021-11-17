@@ -67,7 +67,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Abstrak Penelitian</h5>
+                    <h4 class="modal-title" id="exampleModalLabel">Abstrak Penelitian</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -75,7 +75,7 @@
                 <div class="modal-body">
                     <div class="container py-lg-4 py-sm-2 px-lg-5 px-sm-3 border bg-white">
                         <!-- tag dengan 'id=p_judul' akan berisi judul penelitian -->
-                        <h4 class="py-2" id="p_judul"></h4>
+                        <h5 class="py-2" id="p_judul"></h5>
                         <div class="d-flex justify-content-between pb-3">
                             <h6 class="text-secondary d-inline my-auto">Penulis : <span id="p_penulis">Rahilah, Firdaus Solihin, Fika Hastarita Rachman</span></h6>
                             <a id="p_file" href="#" target="_blank" class="btn btn-outline-primary btn-sm my-auto">
