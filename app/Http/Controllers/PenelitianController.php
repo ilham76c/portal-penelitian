@@ -103,8 +103,10 @@ class PenelitianController extends Controller
     public function update(Request $request, PenelitianModel $penelitianModel)
     {
         if (isset($request->file)) {
-            $penelitianModel->file = explode("/", $request->file->storeAs("uploads", $penelitianModel->file))[1];            
+            Storage::delete("uploads/{$penelitianModel->file}");
+            $penelitianModel->file = explode("/", $request->file->storePublicly("uploads"))[1];
         }
+        
         PenelitianModel::where('id', $penelitianModel->id)->update([
             'judul'   => $request->judul,
             'abstrak' => $request->abstrak,
