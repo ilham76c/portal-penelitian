@@ -133,7 +133,7 @@
                     if (
                         [...search_query].some(query => (jQuery(penelitian.data[iterator].judul).text().toLowerCase()).includes(query))
                         ||
-                        [...search_query].some(query => (jQuery(penelitian.data[iterator].abstract).text().toLowerCase()).includes(query))
+                        [...search_query].some(query => (jQuery(penelitian.data[iterator].abstrak).text().toLowerCase()).includes(query))
                         ||
                         [...search_query].some(query => penelitian.data[iterator].kata_kunci.toLowerCase().includes(query))
                         ||
