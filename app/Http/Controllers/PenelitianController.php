@@ -138,9 +138,13 @@ class PenelitianController extends Controller
      */
     public function download(string $fileName)
     {        
-        return Storage::download("uploads/{$fileName}", $fileName, [
-            "Content-Type" => "application/pdf",
-            "Content-Disposition" => "inline; ".$fileName,
-        ]);        
+        if (Storage::exists("uploads/{$fileName}")) {
+            return Storage::download("uploads/{$fileName}", $fileName, [
+                "Content-Type" => "application/pdf",
+                "Content-Disposition" => "inline; ".$fileName,
+            ]);
+        } else {
+            return "File not found.";
+        }
     }
 }
