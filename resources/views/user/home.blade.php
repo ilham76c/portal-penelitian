@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'Web Ta | Home')
+@section('title', 'Portal Penelitian')
 
 @section('main')
 <main>

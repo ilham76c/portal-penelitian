@@ -1,7 +1,7 @@
 
 @extends('layout.main')
 
-@section('title', 'Web Ta | Aplikasi')
+@section('title', 'Portal Penelitian')
 
 @section('main')
 <main class="yrav-bg-abu" style="min-height: 80vh;">
